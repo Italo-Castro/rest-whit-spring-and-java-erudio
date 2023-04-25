@@ -3,17 +3,20 @@ package br.com.cci.data.vo.v1;
 
 import java.io.Serializable;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.github.dozermapper.core.Mapping;
 
-@JsonPropertyOrder({"id","address","firstName","lastName","gender"})
-public class PersonVO implements Serializable {
+@JsonPropertyOrder({"key","address","firstName","lastName","gender"})
+public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	
-	private Long id;
+	@Mapping("id")
+	private Long key;
 	
 	@JsonProperty("first_name")
 	private String firstName;
@@ -29,12 +32,12 @@ public class PersonVO implements Serializable {
 	
 	public PersonVO() {}
 
-	public Long getId() {
-		return id;
+	public Long getkey() {
+		return key;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setkey(Long key) {
+		this.key = key;
 	}
 
 	public String getFirstName() {
@@ -76,7 +79,7 @@ public class PersonVO implements Serializable {
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((key == null) ? 0 : key.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		return result;
 	}
@@ -105,10 +108,10 @@ public class PersonVO implements Serializable {
 				return false;
 		} else if (!gender.equals(other.gender))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (key == null) {
+			if (other.key != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!key.equals(other.key))
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
