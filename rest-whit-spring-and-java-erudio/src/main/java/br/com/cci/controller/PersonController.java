@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cci.Service.PersonServices;
 import br.com.cci.data.vo.v1.PersonVO;
+import br.com.cci.data.vo.v2.PersonVO2;
 import br.com.cci.model.Person;
 
 
@@ -56,5 +57,12 @@ public class PersonController {
 	public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	//versão V2
+	@PostMapping(value = "/V2", consumes = MediaType.APPLICATION_JSON_VALUE, //é bom para o swagger
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public PersonVO2 createV2(@RequestBody PersonVO2 person) {
+		return service.createV2(person);
 	}
 }

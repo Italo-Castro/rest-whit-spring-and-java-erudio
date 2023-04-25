@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cci.data.vo.v1.PersonVO;
+import br.com.cci.data.vo.v2.PersonVO2;
 import br.com.cci.exceptions.ResourceNotFoundException;
 import br.com.cci.mapper.DozerMapper;
+import br.com.cci.mapper.custom.PersonMapper;
 import br.com.cci.model.Person;
 import br.com.cci.repositories.PersonRepository;
 
@@ -21,6 +23,9 @@ public class PersonServices {
 	@Autowired
 	PersonRepository repository;
 
+	@Autowired
+	PersonMapper mapper;
+	
 	public List<PersonVO> findAll() {
 
 		logger.info("Finding all people!");
@@ -68,4 +73,15 @@ public class PersonServices {
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 		repository.delete(entity);
 	}
+	
+	
+	
+	public PersonVO2 createV2(PersonVO2 person) {
+
+		logger.info("Creating one person whit V2!");
+		
+		var entity = mapper.converVoToEntity(person);
+		return mapper.converEntityToVo(repository.save(entity));
+	} 
+	 
 }
