@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import br.com.cci.controller.PersonController;
 import br.com.cci.data.vo.v1.PersonVO;
 import br.com.cci.data.vo.v2.PersonVO2;
+import br.com.cci.exceptions.RequiredObjectIsNullException;
 import br.com.cci.exceptions.ResourceNotFoundException;
 import br.com.cci.mapper.DozerMapper;
 import br.com.cci.mapper.custom.PersonMapper;
@@ -53,7 +54,9 @@ public class PersonServices {
 	}
 	 
 	public PersonVO create(PersonVO person) {
-
+		
+		if (person == null) throw new RequiredObjectIsNullException();
+		
 		logger.info("Creating one person!");
 		
 		var entity = DozerMapper.parseObject(person, Person.class);
@@ -66,6 +69,7 @@ public class PersonServices {
 	 
 	
 	public PersonVO update(PersonVO person) {
+		if (person == null) throw new RequiredObjectIsNullException();
 		
 		logger.info("Updating one person!");
 		
@@ -90,8 +94,6 @@ public class PersonServices {
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 		repository.delete(entity);
 	}
-	
-	
 	
 	public PersonVO2 createV2(PersonVO2 person) {
 
