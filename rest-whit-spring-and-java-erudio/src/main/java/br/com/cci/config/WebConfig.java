@@ -22,7 +22,7 @@ public class WebConfig implements WebMvcConfigurer{
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 		converters.add(new YamlJackson2HttpMesageConverter());
 	}
-	
+
 
 
 

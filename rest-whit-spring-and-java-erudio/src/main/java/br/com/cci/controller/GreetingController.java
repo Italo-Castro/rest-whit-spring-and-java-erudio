@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.cci.Greeting;
 
 import java.util.concurrent.atomic.AtomicLong;
-
+ 
 @RestController
 public class GreetingController {
 	
