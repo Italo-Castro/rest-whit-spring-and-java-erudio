@@ -20,7 +20,6 @@ public class AccountCredentialsVO implements Serializable{
 	
 	public AccountCredentialsVO(String userName, Boolean authenticated, Date created, Date expiration,
 			String accessToken, String regreshToken) {
-		super();
 		this.userName = userName;
 		this.authenticated = authenticated;
 		this.created = created;
