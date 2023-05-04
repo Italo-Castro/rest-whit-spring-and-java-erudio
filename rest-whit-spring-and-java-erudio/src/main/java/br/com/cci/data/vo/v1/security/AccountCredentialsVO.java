@@ -1,84 +1,42 @@
 package br.com.cci.data.vo.v1.security;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Objects;
 
 public class AccountCredentialsVO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
 	
-	private String userName;
-	private Boolean authenticated;
-	private Date created;
-	private Date expiration;
-	private String accessToken;
-	private String regreshToken;
+	private String username;
+	private String password;
 	
-	public AccountCredentialsVO() {}
-	
-	public AccountCredentialsVO(String userName, Boolean authenticated, Date created, Date expiration,
-			String accessToken, String regreshToken) {
-		this.userName = userName;
-		this.authenticated = authenticated;
-		this.created = created;
-		this.expiration = expiration;
-		this.accessToken = accessToken;
-		this.regreshToken = regreshToken;
+	public AccountCredentialsVO(String username, String password) {
+		this.username = username;
+		this.password = password;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public Boolean getAuthenticated() {
-		return authenticated;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setAuthenticated(Boolean authenticated) {
-		this.authenticated = authenticated;
-	}
-
-	public Date getCreated() {
-		return created;
-	}
-
-	public void setCreated(Date created) {
-		this.created = created;
-	}
-
-	public Date getExpiration() {
-		return expiration;
-	}
-
-	public void setExpiration(Date expiration) {
-		this.expiration = expiration;
-	}
-
-	public String getAccessToken() {
-		return accessToken;
-	}
-
-	public void setAccessToken(String accessToken) {
-		this.accessToken = accessToken;
-	}
-
-	public String getRegreshToken() {
-		return regreshToken;
-	}
-
-	public void setRegreshToken(String regreshToken) {
-		this.regreshToken = regreshToken;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(accessToken, authenticated, created, expiration, regreshToken, userName);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
 	}
 
 	@Override
@@ -90,15 +48,16 @@ public class AccountCredentialsVO implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		AccountCredentialsVO other = (AccountCredentialsVO) obj;
-		return Objects.equals(accessToken, other.accessToken) && Objects.equals(authenticated, other.authenticated)
-				&& Objects.equals(created, other.created) && Objects.equals(expiration, other.expiration)
-				&& Objects.equals(regreshToken, other.regreshToken) && Objects.equals(userName, other.userName);
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
 	}
-	
-	
-	
-	
-	
-	
-	
 }

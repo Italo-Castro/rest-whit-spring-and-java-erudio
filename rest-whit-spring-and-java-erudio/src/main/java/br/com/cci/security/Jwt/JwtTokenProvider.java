@@ -93,6 +93,7 @@ public class JwtTokenProvider {
 
 	private DecodedJWT decodedToken(String token) {
 		Algorithm alg = Algorithm.HMAC256(secretKey.getBytes());
+		System.out.println("deoii");
 		JWTVerifier verifier = JWT.require(alg).build();
 		DecodedJWT decodedJWT = verifier.verify(token);
 		
@@ -107,6 +108,7 @@ public class JwtTokenProvider {
 		}
 		return null;
 	}
+	
 	public boolean validateToken(String token) {
 		DecodedJWT decodedJWT = decodedToken(token);
 		
