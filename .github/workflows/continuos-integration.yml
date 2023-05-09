@@ -39,12 +39,13 @@ jobs:
       run: mvn clean package
       
     - name: Docker Compose Build
-      working-directory: /rest-whit-spring-and-java-erudio
+      working-directory: ./rest-whit-spring-and-java-erudio
       run: docker compose build
 
     - name: Push to Docker Hub Container Registry
       run: | 
          docker tag ${{ secrets.DOCKER_USERNAME }}/rest-whit-spring-and-java-erudio:latest ${{ secrets.DOCKER_USERNAME }}/rest-whit-spring-and-java-erudio:${{ github.run_id }}
+         
          docker push ${{ secrets.DOCKER_USERNAME }}/rest-whit-spring-and-java-erudio:${{ github.run_id }}
          docker push ${{ secrets.DOCKER_USERNAME }}/rest-whit-spring-and-java-erudio:latest
         
