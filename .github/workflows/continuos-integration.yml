@@ -35,7 +35,7 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Maven (Build Application Jar)
-      working-directory: /rest-whit-spring-and-java-erudio/rest-whit-spring-and-java-erudio
+      working-directory: ./rest-whit-spring-and-java-erudio/rest-whit-spring-and-java-erudio
       run: mvn clean package
       
     - name: Docker Compose Build
