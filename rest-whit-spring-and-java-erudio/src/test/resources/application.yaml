@@ -3,7 +3,7 @@ server:
 cors:
   originPatterns: http://localhost:3000
 file:
-  upload-dir: /cod/UploadDir
+  upload-dir: /home/runner/work/rest-whit-spring-and-java-erudio/UploadDir
 security:
   jwt:
     token:
